@@ -4,7 +4,7 @@ Vue provides the official npm package `vue-rx` that provides RxJS integration, w
 ### Example
 
 ::: tip 
-This example is available in [Github](https://github.com/embark-framework/subspace/tree/master/examples/vue)
+This example is available in [Github](https://github.com/embarklabs/subspace/tree/master/examples/vue)
 :::
 
 

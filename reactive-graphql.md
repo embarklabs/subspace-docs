@@ -59,5 +59,5 @@ run();
 ```
 
 ::: tip 
-This example is available in [Github](https://github.com/status-im/subspace/tree/master/examples/reactive-graphql)
+This example is available in [Github](https://github.com/embarklabs/subspace/tree/master/examples/reactive-graphql)
 :::
