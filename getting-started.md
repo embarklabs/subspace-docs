@@ -34,6 +34,18 @@ In addition to the provider, `Subspace` also accepts an `options` object with se
 - `callInterval` - Interval of time in milliseconds to query a contract/address to determine changes in state or balance (default: `undefined`. Obtains data every block).
 - `disableSubscriptions` - `Subspace` by default will attempt to use websocket subscriptions if the current provider supports them, otherwise it will use polling because it asumes the provider is an `HttpProvider`. This functionality can be disabled by passing `true` to this option. (default: `false`)tionality can be forced by passing `true` to this option. (default: `undefined`)
 
+## Enhancing your contract objects
+Subspace provides a method to enhance your web3 Contract objects: `subspace.contract(instance|{abi,address})`. Calling this method will return a new contract object decorated with a `.track()` method for your contract view functions and events.
+
+```js
+const myRxContract = subspace.contract(myContractInstance);
+```
+
+You can also instantiate a contract directly by passing the contract ABI and its address:
+
+```js
+const myRXContract = subspace.contract({abi: ...., address: '0x1234...CDEF'})
+```
 
 ## Reacting to data
 Once it's initialized, you can use **Subspace**'s methods to track the contract state, events and balances. These functions return RxJS Observables which you can subscribe to, and obtain and transform the observed data via operators.
@@ -50,11 +62,11 @@ The `Observable` type can be used to model push-based data sources such as DOM e
 ## Tracking state
 You can track changes to a contract state variable, by specifying the view function and arguments to call and query the contract. 
 ```js
-const stateObservable$ = Contract.methods.functionName().track();
+const stateObservable$ = Contract.methods.functionName(functionArgs).track();
 ```
 
 ::: tip Tracking the public variables of a contract
-State variables implicity create a `view` function when they're defined as `public`. The `functionName` would be the same as the variable name, and `functionArgs` would have a value when the type is a `mapping` or `array` (since these require an index value to query them).
+State variables implicity create a `view` function when they're defined as `public`. The `functionName` would be the same as the variable name, and `functionArgs` will have a value when the type is a `mapping` or `array` (since these require an index value to query them).
 :::
 
 Example:
@@ -62,9 +74,14 @@ Example:
 ```js
 const productTitle$ = ProductList.methods.products(0).track().map("title");
 productTitle$.subscribe((title) => console.log("product title is " + title));
+
+
+// Alternative using Subspace low level API
+const producTitle$ = subspace.trackProperty(ProductList, "products", [0], {from: web3.eth.defaultAccount});
+...
 ```
 
-The subscriber will be triggered whenever the title changes
+The subscription will be triggered whenever the title changes
 
 ## Tracking events
 You can track events and react to their returned values.
@@ -77,6 +94,11 @@ Example:
 ```js
 const rating$ = Product.events.Rating().track().map("rating")).pipe(map(x => parseInt(x)));
 rating$.subscribe((rating) => console.log("rating received: " + rating));
+
+
+// Alternative using Subspace low level API
+const rating$ = subspace.trackEvent(Product, "Rating", {fromBlock: 0});
+...
 ```
 
 **Event Sourcing**
