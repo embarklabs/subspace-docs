@@ -150,6 +150,40 @@ const myBalanceObservable$ = Contract.trackBalance(tokenAddress);
 Balances are returned as a string containing the value in *wei*.
 :::
 
+
+
+## Getting block data, gas prices and block time
+Subspace also provides a way to always receive the latest block object: 
+```js
+subspace.trackBlock().subscribe(block => {
+  console.log("The latest block data: ", block);
+});
+```
+
+If you don't need all the block information, but just the block number, you can use instead:
+```js
+subspace.trackBlockNumber().subscribe(blockNumber => {
+  console.log("The latest block number: ", blockNumber);
+});
+```
+
+You can also access the average block time. This takes in account only the last 10 blocks:
+
+```js
+subspace.trackAverageBlocktime().subscribe(blocktimeMS => {
+  console.log("The average block time in milliseconds is: ", blocktimeMS);
+});
+```
+
+Finally, if you want to obtain the most up to date median gas price:
+
+```js
+subspace.trackGasPrice().subscribe(gasPrice => {
+  console.log("Gas price in wei", gasPrice);
+});
+```
+
+
 ## Subscriptions
 Once you have an `Observable`, you may receive a stream of data by creating a subscription. Subscriptions are triggered each time an observable emits a new value. These subscription receive a callback that must have a parameter which represents the value received from the observable (a contract state variable, an event, or the balance of an address);  and they return an object representing the subscription.
 

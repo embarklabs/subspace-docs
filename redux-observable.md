@@ -25,7 +25,7 @@ const myEpic = action$ =>
 ```
 
 ::: tip 
-An example is available in [Github](https://github.com/status-im/subspace/tree/master/examples/redux-observable)
+An example is available in [Github](https://github.com/embarklabs/subspace/tree/master/examples/redux-observable)
 :::
 
 #### Further read

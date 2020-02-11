@@ -67,6 +67,33 @@ Track a contract's balance changes for an address on each block mined, or depend
 `RxJS Observable` which will stream a string containing the address balance.
 
 
+## Blocks, gas price and block time
+
+### `trackBlock()`
+Receive the block information for any new block. It's the reactive equivalent to `web3.eth.getBlock("latest")`.
+
+**Returns**
+`RxJS Observable` which will stream a block object for the latest block received
+
+### `trackBlockNumber()`
+Returns the latest block number. It's the reactive equivalent to `web3.eth.getBlockNumber`.
+
+**Returns**
+`RxJS Observable` with the latest block number
+
+### `trackGasPrice()`
+Returns the current gas price oracle. It's the reactive equivalent to `web3.eth.getGasPrice`.
+
+**Returns**
+`RxJS Observable` with the average gas price in wei.
+
+### `trackAverageBlocktime()`
+Average block time of the last 10 blocks.
+
+**Returns**
+`RxJS Observable` with the moving average block time of the last 10 blocks. The time is returned in milliseconds:
+
+
 ## Low level API for data tracking
 
 These are used in case you don't want to decorate your web3 contract objects, or if you want to track the balance for an specific address.

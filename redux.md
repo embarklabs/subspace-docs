@@ -6,7 +6,7 @@
 Here's a simple example on how to setup **Subspace** to work with `redux`:
 
 ::: tip 
-This example is available in [Github](https://github.com/status-im/subspace/tree/master/examples/redux)
+This example is available in [Github](https://github.com/embarklabs/subspace/tree/master/examples/redux)
 :::
 
 #### index.js
@@ -31,7 +31,7 @@ const run = async () => {
 run();
 ```
 ::: warning Handling Contract Objects
-The variable `MyContractInstance` is a `web3.eth.Contract` object pointing to a deployed contract address. You can use a DApp framework like [Embark](https://embark.status.im/docs/contracts_javascript.html) to easily import that contract instance: `import { MyContract } from './embarkArtifacts/contracts';`, or use web3.js directly (just like in the example [source code](https://github.com/status-im/subspace/blob/master/examples/redux/src/MyContract.js#L36-L42))
+The variable `MyContractInstance` is a `web3.eth.Contract` object pointing to a deployed contract address. You can use a DApp framework like [Embark](https://embark.status.im/docs/contracts_javascript.html) to easily import that contract instance: `import { MyContract } from './embarkArtifacts/contracts';`, or use web3.js directly (just like in the example [source code](https://github.com/embarklabs/subspace/blob/master/examples/redux/src/MyContract.js#L36-L42))
 :::
 
 #### store.js

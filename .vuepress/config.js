@@ -24,7 +24,7 @@ module.exports = {
       { text: 'Getting Started', link: '/getting-started/' },
       { text: 'Integrations', link: '/integrations-overview' },
       { text: 'API', link: '/api' },
-      { text: 'Github', link: 'https://github.com/status-im/subspace' },
+      { text: 'Github', link: 'https://github.com/embarklabs/subspace' },
     ],
     sidebar: [
       '/',
