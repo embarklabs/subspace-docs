@@ -10,7 +10,9 @@ Constructor.
 2. `options` - `Object` (optional): Options used to initialize Subspace
 	- `dbFilename` - `String` (optional): Name of the database where the information will be stored (default `'subspace.db'`)
 	- `callInterval` - `Number` (optional): - Interval of time in milliseconds to poll a contract/address to determine changes in state or balance (default: `undefined`. Obtains data every block. If using a HttpProvider, the default is: `1000`)
-    - `disableSubscriptions` - `Subspace` by default will attempt to use websocket subscriptions if the current provider supports them, otherwise it will use polling because it asumes the provider is an `HttpProvider`. This functionality can be disabled by passing `true` to this option. (default: `false`)
+    - `refreshLastNBlocks` - Ignores last N blocks (from current block), stored in the local db and refresh them via a web3 subscription. Useful for possible reorgs (default: 12),
+    - `disableSubscriptions` - Subspace by default will attempt to use websocket subscriptions if the current provider supports them, otherwise it will use polling because it asumes the provider is an HttpProvider. This functionality can be disabled by passing true to this option. (default: undefined)
+
 
 ### `init()`
 Initializes **Subspace**

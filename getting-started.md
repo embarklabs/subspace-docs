@@ -32,7 +32,9 @@ await subspace.init();
 In addition to the provider, `Subspace` also accepts an `options` object with settings that can change its behavior:
 - `dbFilename` - Name of the database where the information will be stored (default `'subspace.db'`)
 - `callInterval` - Interval of time in milliseconds to query a contract/address to determine changes in state or balance (default: `undefined`. Obtains data every block).
-- `disableSubscriptions` - `Subspace` by default will attempt to use websocket subscriptions if the current provider supports them, otherwise it will use polling because it asumes the provider is an `HttpProvider`. This functionality can be disabled by passing `true` to this option. (default: `false`)tionality can be forced by passing `true` to this option. (default: `undefined`)
+- `refreshLastNBlocks` - Ignores last N blocks (from current block), stored in the local db and refresh them via a web3 subscription. Useful for possible reorgs (default: 12),
+- `disableSubscriptions` - Subspace by default will attempt to use websocket subscriptions if the current provider supports them, otherwise it will use polling because it asumes the provider is an HttpProvider. This functionality can be disabled by passing true to this option. (default: undefined)
+
 
 ## Enhancing your contract objects
 Subspace provides a method to enhance your web3 Contract objects: `subspace.contract(instance|{abi,address})`. Calling this method will return a new contract object decorated with a `.track()` method for your contract view functions and events.
